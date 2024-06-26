@@ -57,7 +57,7 @@
                    
 
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="submit" class="btn btn-primary" onclick="resetForm()">Save</button>
                         <button class="btn btn-danger" data-bs-dismiss="modal" onclick="resetForm()">Close</button>
                     </div>
                 </form>
