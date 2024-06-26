@@ -15,7 +15,6 @@
                     hx-trigger="submit"
                     hx-target="#product_list"
                     hx-swap="innerHTML"
-                    hx-on::after-request="this.reset()"
                     method="POST"
                 >
                     @csrf
@@ -44,16 +43,17 @@
                     <div class="mb-2">
                         <label for="quantity">Quantity:</label>
                         <input class="w-full rounded border border-slate-300 p-2" type="number" name="quantity" id="quantity">
+                        <div id="quantityErrorMessage">
+
+                        </div>
                     </div>
                     </div>
 
-                    <div id="quantityErrorMessage">
-
-                    </div>
+                   
 
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Save</button>
-                        <button class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        <button class="btn btn-danger" data-bs-dismiss="modal" onclick="close()">Close</button>
                     </div>
                 </form>
             </div>
@@ -89,6 +89,15 @@
 
     </div>
 
+
+    <script>
+        function close(){
+            document.getElementById('name').innerHTML = ''
+            document.getElementById('description').innerHTML = ''
+            document.getElementById('price').innerHTML = ''
+            document.getElementById('quantity').innerHTML = ''
+        }
+    </script>
    
 
     

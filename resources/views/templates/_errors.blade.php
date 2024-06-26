@@ -1,13 +1,25 @@
 @include('templates._product-list', ['products' => $products])
 
-<div id="addProductMessage" hx-swap-oob="true">
-    <div class="bg-red-300 text-red-700 p-4 rounded m-2">
-        <div>Please fix the following:</div>
+<div id="nameErrorMessage" class="text-red-500" hx-swap-oob="true">
+    @if($error->has('name'))
+        <div class="error">{{ $error->first('name') }}</div>
+    @endif
+</div>
 
-        <ul>
-            @foreach ($error as $error)
-                <li class="list-disc ms-2">{{$error}}</li>
-            @endforeach
-        </ul>
-    </div>
+<div id="descriptionErrorMessage" class="text-red-500" hx-swap-oob="true">
+    @if($error->has('description'))
+        <div class="error">{{ $error->first('description') }}</div>
+    @endif
+</div>
+
+<div id="priceErrorMessage" class="text-red-500" hx-swap-oob="true">
+    @if($error->has('price'))
+        <div class="error">{{ $error->first('price') }}</div>
+    @endif
+</div>
+
+<div id="quantityErrorMessage" class="text-red-500" hx-swap-oob="true">
+    @if($error->has('quantity'))
+        <div class="error">{{ $error->first('quantity') }}</div>
+    @endif
 </div>
