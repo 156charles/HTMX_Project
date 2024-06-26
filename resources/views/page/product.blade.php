@@ -11,6 +11,7 @@
             </div>
             <div class="modal-body">
                 <form 
+                    id="form"
                     hx-post="/api/products"
                     hx-trigger="submit"
                     hx-target="#product_list"
@@ -21,7 +22,7 @@
                     @csrf
                     <div class="mb-2">
                         <label for="name">Name:</label>
-                        <input class="w-full rounded border border-slate-300 p-2" type="text" name="name" id="name" >
+                        <input class="w-full rounded border border-slate-300 p-2"  type="text" name="name" id="name" >
                         <div id="nameErrorMessage">
 
                         </div>
@@ -57,8 +58,8 @@
                    
 
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" onclick="resetForm()">Save</button>
-                        <button class="btn btn-danger" data-bs-dismiss="modal" onclick="resetForm()">Close</button>
+                        <button type="submit" class="btn btn-primary" onclick="resetModal()">Save</button>
+                        <button class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                     </div>
                 </form>
             </div>
@@ -72,7 +73,7 @@
         </div>
     
         <div class="flex fixed right-2 gap-3">
-            <button class="bg-blue-700 rounded px-4 py-2 text-white" type="button" data-bs-toggle="modal" onclick="resetForm()" data-bs-target="#create">Add</button>
+            <button class="bg-blue-700 rounded px-4 py-2 text-white" type="button" data-bs-toggle="modal" onclick="resetForm() " data-bs-target="#create">Add</button>
 
             <div>
                 <form hx-get="/api/products"
@@ -95,14 +96,24 @@
     </div>
 
     <script>
-        function resetForm() {
+        function resetModal() {
             document.getElementById('nameErrorMessage').innerHTML = '';
             document.getElementById('descriptionErrorMessage').innerHTML = '';
             document.getElementById('priceErrorMessage').innerHTML = '';
             document.getElementById('quantityErrorMessage').innerHTML = '';
         }
 
+        function resetForm() {
+           document.getElementById('form').reset();
+
+            document.getElementById('nameErrorMessage').innerHTML = '';
+            document.getElementById('descriptionErrorMessage').innerHTML = '';
+            document.getElementById('priceErrorMessage').innerHTML = '';
+            document.getElementById('quantityErrorMessage').innerHTML = '';
+            document.getElementById('addProductMessage').classList.toggle('hidden')
+        }
     </script>
+   
 
     
 @endsection
