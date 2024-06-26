@@ -50,11 +50,15 @@
                     </div>
                     </div>
 
+                    <div id="addProductMessage">
+
+                    </div>
+
                    
 
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Save</button>
-                        <button class="btn btn-danger" data-bs-dismiss="modal" onclick="close()">Close</button>
+                        <button class="btn btn-danger" data-bs-dismiss="modal" onclick="resetForm()">Close</button>
                     </div>
                 </form>
             </div>
@@ -68,7 +72,7 @@
         </div>
     
         <div class="flex fixed right-2 gap-3">
-            <button class="bg-blue-700 rounded px-4 py-2 text-white" type="button" data-bs-toggle="modal" data-bs-target="#create">Add</button>
+            <button class="bg-blue-700 rounded px-4 py-2 text-white" type="button" data-bs-toggle="modal" onclick="resetForm()" data-bs-target="#create">Add</button>
 
             <div>
                 <form hx-get="/api/products"
@@ -90,15 +94,14 @@
 
     </div>
 
-
     <script>
-        function close(){
-            document.getElementById('name').innerHTML = ''
-            document.getElementById('description').innerHTML = ''
-            document.getElementById('price').innerHTML = ''
-            document.getElementById('quantity').innerHTML = ''
+        function resetForm() {
+            document.getElementById('nameErrorMessage').innerHTML = '';
+            document.getElementById('descriptionErrorMessage').innerHTML = '';
+            document.getElementById('priceErrorMessage').innerHTML = '';
+            document.getElementById('quantityErrorMessage').innerHTML = '';
         }
-    </script>
+
    
 
     

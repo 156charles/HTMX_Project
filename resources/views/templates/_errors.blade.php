@@ -23,3 +23,8 @@
         <div class="error">{{ $error->first('quantity') }}</div>
     @endif
 </div>
+
+<div
+    hx-swap-oob="true"
+    id="addProductMessage">
+</div>
