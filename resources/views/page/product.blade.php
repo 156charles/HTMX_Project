@@ -15,6 +15,7 @@
                     hx-trigger="submit"
                     hx-target="#product_list"
                     hx-swap="innerHTML"
+                    hx-on::after-request="this.reset()"
                     method="POST"
                 >
                     @csrf
