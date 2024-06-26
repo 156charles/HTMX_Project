@@ -102,7 +102,7 @@
             document.getElementById('quantityErrorMessage').innerHTML = '';
         }
 
-   
+    </script>
 
     
 @endsection
