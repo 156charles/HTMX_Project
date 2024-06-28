@@ -12,11 +12,12 @@
             <div class="modal-body">
                 <form 
                     id="form"
+                    action="/api/products"
                     hx-post="/api/products"
                     hx-trigger="submit"
                     hx-target="#product_list"
                     hx-swap="innerHTML"
-                    hx-on::after-request="this.reset()"
+                    hx-on="htmx:afterRequest: if(event.detail.successful) this.reset();"  
                     method="POST"
                 >
                     @csrf
@@ -67,7 +68,7 @@
     </div>
 
 
-    <div class="flex items-center">
+    <div class="flex items-center" id="page">
         <div class="text-4xl flex-1">
             Product Page
         </div>
@@ -87,6 +88,10 @@
         </div>
     </div>
 
+    <div id="success">
+
+    </div>
+
     <div id="product_list"
     hx-get="/api/products"
     hx-swap="innerHTML"
@@ -94,6 +99,7 @@
      class="mt-3 grid grid-cols-3 gap-2 max-w-[100%]">
 
     </div>
+    
 
     <script>
         function resetModal() {

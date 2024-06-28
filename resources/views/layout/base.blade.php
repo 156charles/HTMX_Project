@@ -29,7 +29,7 @@
                 <span>Copyright me</span>
             </footer>
         </div>
-        <section class="p-2 overflow-auto">
+        <section class="p-2 overflow-auto w-full">
             @yield('content')
         </section>
     </header>

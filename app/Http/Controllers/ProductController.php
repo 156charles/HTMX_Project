@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use GuzzleHttp\Handler\Proxy;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -17,22 +18,7 @@ class ProductController extends Controller
                 ->orWhere('description', 'like', "%$request->filter");
         }
 
-        $html = "";
-
-        foreach($products->get() as $product){
-            $html .= " 
-                <div class='bg-white rounded max-w-[100%] shadow p-2 min-h-[40vh]'>
-                    <img src='$product->img' alt='Image' class='w-[20%] h-[10vh]'>
-                    <div class='mt-2 flex flex-col h-[27vh]'>
-                        <div class='font-bold text-2xl'>$product->name</div>
-                        <div class='flex-1'>$product->description</div>
-                        <div class='text-red-500'>P$product->price</div>
-                    </div>
-                </div>
-            ";
-        }
-
-        return $html;
+        return view('templates._product-list', ['products' => $products]);
     }
 
     public function store(Request $request){  
@@ -57,5 +43,44 @@ class ProductController extends Controller
 
         return view('templates._product-list', ['products' => $products]);
     }
+
+    public function edit(Product $product){
+        $product = Product::find($product->id);
+        // dd($product);
+
+        return view('product.edit', compact('product'));
+    }
+
+    public function update(Request $request, Product $product){
+        $fields = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'quantity' => 'required'
+        ]);
+    
+
+        $product->update($fields);
+
+        // dd($product);
+
+
+        // return view('page.product')->with('update', 'Updated Successfully.');
+        return view('page.product');
+    }
+
+    public function destroy(Product $product) {
+        $product = Product::find($product->id);
+        $product->delete();
+
+        return view('templates._products-list-for-create', ['products'=>$product]);
+    }
+
+    public function show(Product $product)
+    {
+      $product = Product::find($product->id);
+      return view('product.show', compact('product'));
+    }
+    
 
 }

@@ -27,11 +27,12 @@ Route::get('/product', function () {
     return view('page.product');
 });
 
+Route::get('/product/{product}/edit', [ProductController::class, 'edit'])->name('product.edit');
+
 
 Route::get('/contact', function () {
     return view('page.contact');
 });
 
-
-
+Route::get('/product/{product}/show', [ProductController::class, 'show']);
 
