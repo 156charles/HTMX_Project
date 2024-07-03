@@ -1,12 +1,12 @@
-@extends('layout.base')
-@section('content')
-    <div class="mt-4 w-full" id="EditPage">
+{{-- @extends('layout.base')
+@section('content') --}}
+    <div class="w-full" id="EditPage">
         <div class="w-[60vh] bg-white rounded shadow-md p-3 mt-10">
             <h1 class="text-3xl ">Edit</h1>
             <span class="italic">Let's edit your product</span>
             <form class="mt-6" hx-put="/api/products/{{$product->id}}"
                 hx-trigger="submit"
-                hx-target="body"
+                hx-target="#product_list"
                 hx-swap="innerHTML"
                 
                 method="POST">
@@ -39,4 +39,4 @@
             </form>
         </div>
     </div>
-@endsection
+{{-- @endsection --}}

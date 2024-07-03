@@ -52,6 +52,9 @@ class ProductController extends Controller
     }
 
     public function update(Request $request, Product $product){
+
+        $products = Product::orderBy('name');
+        
         $fields = $request->validate([
             'name' => 'required',
             'description' => 'required',
@@ -59,21 +62,27 @@ class ProductController extends Controller
             'quantity' => 'required'
         ]);
     
-
+        
         $product->update($fields);
+        
+      
 
         // dd($product);
 
 
         // return view('page.product')->with('update', 'Updated Successfully.');
-        return view('page.product');
+        // return view('page.product');
+        return view('templates._product-list', ['products'=>$products]);
     }
 
     public function destroy(Product $product) {
         $product = Product::find($product->id);
+
+        $products = Product::orderBy('name');
+
         $product->delete();
 
-        return view('templates._products-list-for-create', ['products'=>$product]);
+        return view('templates._product-list', ['products'=>$products]);
     }
 
     public function show(Product $product)

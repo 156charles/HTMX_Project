@@ -53,7 +53,7 @@
                     </div>
 
                     <div id="addProductMessage">
-
+                        
                     </div>
 
                    

@@ -29,7 +29,7 @@
                 </div>
                 <footer class="flex items-center">
                     <div>
-                        <a href="/product" class="bg-green-600 rounded text-white px-3 py-2.5">Back</a>
+                        <a hx-get="/product" hx-swap="innerHTML" hx-target="body" class="bg-green-600 rounded text-white px-3 py-2.5">Back</a>
                     </div>
                 </footer>
         </div>
